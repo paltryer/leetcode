@@ -1,5 +1,7 @@
 package com.leetcode.coder.study;
 
+import com.leetcode.coder.study.util.ListNode;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,18 +46,6 @@ public class Day0429 {
     }
 
 
-    /**
-     * 链表结构
-     */
-    public static class ListNode {
-        int val;
-        ListNode next = null;
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-    }
 
 
     /**

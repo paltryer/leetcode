@@ -1,6 +1,7 @@
 package com.leetcode.coder.study;
 
-import com.sun.tools.javadoc.Start;
+
+import com.leetcode.coder.study.util.ListNode;
 
 /**
  * @description: 5月10日晚练习
@@ -10,15 +11,6 @@ import com.sun.tools.javadoc.Start;
 public class Day0510 {
 
 
-    public static class ListNode {
-        int val;
-        ListNode next = null;
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-    }
 
 
     public static void main(String[] args) {
