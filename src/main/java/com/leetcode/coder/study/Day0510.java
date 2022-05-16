@@ -1,7 +1,7 @@
 package com.leetcode.coder.study;
 
 
-import com.leetcode.coder.study.util.ListNode;
+import com.leetcode.coder.util.ListNode;
 
 /**
  * @description: 5月10日晚练习

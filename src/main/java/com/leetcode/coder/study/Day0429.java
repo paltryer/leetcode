@@ -1,10 +1,8 @@
 package com.leetcode.coder.study;
 
-import com.leetcode.coder.study.util.ListNode;
+import com.leetcode.coder.util.ListNode;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
 
 /**

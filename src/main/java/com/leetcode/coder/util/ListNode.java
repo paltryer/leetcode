@@ -1,6 +1,4 @@
-package com.leetcode.coder.study.util;
-
-import com.leetcode.coder.study.Day0510;
+package com.leetcode.coder.util;
 
 /**
  * @description: 单向链表类

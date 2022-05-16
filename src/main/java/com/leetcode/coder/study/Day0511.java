@@ -1,6 +1,6 @@
 package com.leetcode.coder.study;
 
-import com.leetcode.coder.study.util.ListNode;
+import com.leetcode.coder.util.ListNode;
 
 import java.util.Stack;
 
