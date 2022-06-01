@@ -47,6 +47,7 @@ public class Day0511 {
      */
     private static int findMaxSumOfSubArray(int[] array) {
 
+
         int length = array.length;
         int sumMax = array[0];
         int currentSum = sumMax;
