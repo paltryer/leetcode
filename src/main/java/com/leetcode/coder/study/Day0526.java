@@ -27,7 +27,10 @@ public class Day0526 {
     }
 
     /**
-     * 爬楼梯
+     * 爬楼梯、跳台阶都是一样的问题
+     * 斐波那契数列问题
+     * 递归方式 ： x = fun(x-1) + fun（x-2）
+     * 迭代方式： 声明初始值，然后相加，进行值移动
      */
     public int climbStairs(int n) {
         //使用迭代的方式，递归会超时
@@ -50,7 +53,6 @@ public class Day0526 {
      * 二叉树中序遍历
      * <p>
      * 基于栈
-     * todo 时长复习
      */
     public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> nodeList = new ArrayList<Integer>();
@@ -77,29 +79,72 @@ public class Day0526 {
         return nodeList;
     }
 
+
     /**
      * 二叉树中序遍历
      * <p>
      * 递归方式
+     * <p>
+     * 递归方式遍历二叉树比较简单
+     * 三种方式，对应的区别就是加入到list的时机不同
      */
     public static List<Integer> inorderTraversal1(TreeNode root) {
         ArrayList<Integer> nodeList = new ArrayList<>();
 
-        inOrder(root,nodeList);
+        inOrder(root, nodeList);
         return nodeList;
     }
 
-    private static void inOrder(TreeNode root ,List<Integer> nodeList){
-        if(root == null){
+    /**
+     * 【中序】遍历
+     */
+    private static void inOrder(TreeNode root, List<Integer> nodeList) {
+        if (root == null) {
             return;
         }
-        inOrder(root.left,nodeList);
+        //先左节点
+        inOrder(root.left, nodeList);
+
+        //根节点
         nodeList.add(root.val);
-        inOrder(root.right,nodeList);
+
+        //右节点
+        inOrder(root.right, nodeList);
     }
 
-    //---------------------------------[二叉树中序遍历]-----------------------------------
+
+    /**
+     * 【前序】遍历
+     */
+    private static void beforeOrder(TreeNode root, List<Integer> nodeList) {
+        if (root == null) {
+            return;
+        }
+
+        //前序遍历，将节点放入到list中
+        nodeList.add(root.val);
+
+        //递归调用，打印节点
+        beforeOrder(root.left, nodeList);
+        beforeOrder(root.right, nodeList);
+
+    }
 
 
+    /**
+     * 【后序】遍历
+     */
+    private static void afterOrder(TreeNode root, List<Integer> nodeList) {
+        if (root == null) {
+            return;
+        }
+
+        //递归调用，打印节点
+        afterOrder(root.left, nodeList);
+        afterOrder(root.right, nodeList);
+
+        //后序遍历，将节点放入到list中
+        nodeList.add(root.val);
+    }
 
 }

@@ -6,8 +6,8 @@ import java.util.Stack;
 
 
 /**
- * @description 五月11日练习
  * @author wangchao
+ * @description 五月11日练习
  * @create: 2022-05-11 10:40
  **/
 public class Day0511 {
@@ -49,13 +49,17 @@ public class Day0511 {
 
 
         int length = array.length;
+        //最终最大值
         int sumMax = array[0];
+        //当前最大值  -- 分支最大值
         int currentSum = sumMax;
+
         for (int i = 1; i < length; i++) {
+            //最大值小于0，则从0开始计算，  加上数组的第【i】位
             currentSum = Math.max(currentSum, 0) + array[i];
+
+            //对最终最大值进行比较，保证是每个分支的最大值
             sumMax = Math.max(sumMax, currentSum);
-
-
         }
 
         return sumMax;
@@ -77,18 +81,21 @@ public class Day0511 {
         ListNode fast = list;
         //fast 和 fast.next  不为空
         while (fast != null && fast.next != null) {
+            //快慢指针向后移动
             slow = slow.next;
             fast = fast.next.next;
-            //比较内存地址
+
+            //比较内存地址，是一个地址，同一对象则有环
             if (slow == fast) {
                 return true;
             }
+
         }
 
         return false;
     }
 
-    //-----------------------------------------【合并两个有序数据】---------------------------------------------------------------------------------
+    //-----------------------------------------【合并两个有序数组】---------------------------------------------------------------------------------
 
     /**
      * 给出一个有序的整数数组 A 和有序的整数数组 B ，请将数组 B 合并到数组 A 中，变成一个有序的升序数组
@@ -145,11 +152,16 @@ public class Day0511 {
      * 复制
      * 返回值：
      * true
+     * <p>
+     * 使用堆栈
      */
     private static boolean isValid(String str) {
+        //创建栈来存储数据
         Stack<Character> stack = new Stack<Character>();
         char[] chars = str.toCharArray();
+
         for (char aChar : chars) {
+            //如果是闭括号，则从栈中弹出，进行比对
             if (aChar == ')') {
                 if (stack.isEmpty() || stack.pop() != '(') {
                     return false;
@@ -163,6 +175,7 @@ public class Day0511 {
                     return false;
                 }
             } else {
+                //如果是开括号，则压入栈中
                 stack.push(aChar);
             }
         }
@@ -177,6 +190,7 @@ public class Day0511 {
         Stack<Character> stack = new Stack<Character>();
         char[] chars = str.toCharArray();
         for (char aChar : chars) {
+            //如果是开括号，则将对应括号压入栈中
             if (aChar == '(') {
                 stack.push(')');
             } else if (aChar == '[') {
@@ -184,11 +198,12 @@ public class Day0511 {
             } else if (aChar == '{') {
                 stack.push('}');
             } else if (stack.isEmpty() || stack.pop() != aChar) {
+                //其他的，如果栈空的，或者弹出不是目标，则为false
                 return false;
             }
-
         }
 
+        //最后判断一下stack是否是空的
         return stack.isEmpty();
 
     }

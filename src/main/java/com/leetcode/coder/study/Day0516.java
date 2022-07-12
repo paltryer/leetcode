@@ -3,9 +3,7 @@ package com.leetcode.coder.study;
 import com.leetcode.coder.util.ListNode;
 
 /**
- * @description: 晚上联系
- * @author: wangchao
- * @create: 2022-05-16 21:52
+ * @author wangchao
  **/
 public class Day0516 {
 
@@ -55,8 +53,11 @@ public class Day0516 {
             tempHead1 = tempHead1.next;
             tempHead2 = tempHead2.next;
         }
-        //将一个走完之后
+
+        //将长的剩余部分（差值）赋给index
         ListNode index = tempHead1 == null ? tempHead2 : tempHead1;
+
+        //确定两个链表谁长
         ListNode longNode = tempHead1 == null ? pHead2 : pHead1;
         ListNode shortNode = tempHead1 == null ? pHead1 : pHead2;
 
@@ -68,9 +69,12 @@ public class Day0516 {
 
         //一步步比对
         while (longNode != null && shortNode != null) {
+            //使用对象比对，比对内存地址，是同一对象，则为第一个公共对象
             if (longNode == shortNode) {
                 return longNode;
             }
+
+            //不是则向后移动
             longNode = longNode.next;
             shortNode = shortNode.next;
         }

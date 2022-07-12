@@ -9,11 +9,36 @@ public class Day0623 {
 
     public static void main(String[] args) {
 
-        List<List<Integer>> lists = combinationSum(new int[]{2, 3, 6, 7}, 7);
+        ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+        try {
 
+            threadLocal.set(1);
+            System.out.println(threadLocal);
+            System.out.println("第一次get" + threadLocal.get());
+            for (int i = 0; i < 10000; i++) {
+                getArray();
+            }
+            System.gc();
+            Thread.sleep(5000);
+            System.out.println(threadLocal);
+            System.out.println("第二次get" + threadLocal.get());
+
+
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+        }
 
     }
 
+    private static void getArray() {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (int i = 0; i < 100000; i++) {
+            Integer integer = new Integer(10);
+            objects.add(integer);
+        }
+    }
 
     //------------------------------【数组总和】----------------------------------------
 
@@ -46,8 +71,9 @@ public class Day0623 {
             return;
         }
 
+        //已经达到目标，则直接添加进入结果集合里
         if (target == 0) {
-            ans.add(new ArrayList<>(combine));
+            ans.add(combine);
             return;
         }
 
@@ -57,7 +83,7 @@ public class Day0623 {
         //选择当前数
         if (target - candidates[idx] >= 0) {
             combine.add(candidates[idx]);
-            dfs(candidates, target - candidates[idx], ans, combine, idx);
+            dfs(candidates, target - candidates[idx], ans, combine, idx + 1);
             //将最后一位删除：回溯
             combine.remove(combine.size() - 1);
         }
@@ -85,7 +111,7 @@ public class Day0623 {
         }
 
         int length = nums.length;
-        backtrack(length, ans, output, 0);
+        backtrack(0, length, ans, output);
 
         return ans;
     }
@@ -93,12 +119,12 @@ public class Day0623 {
     /**
      * 抽象出的递归方法
      *
+     * @param index  已经使用到的索引
      * @param length 总长度
      * @param ans    总结果集合
      * @param list   这个分支的结果集合
-     * @param index  已经使用到的索引
      */
-    public static void backtrack(int length, List<List<Integer>> ans, List<Integer> list, int index) {
+    public static void backtrack(int index, int length, List<List<Integer>> ans, List<Integer> list) {
         //当等于总长度后，将集合放入到总结果中
         if (index == length) {
             ans.add(new ArrayList<>(list));
@@ -109,7 +135,7 @@ public class Day0623 {
             //动态维护，将已用元素移动到前面
             Collections.swap(list, index, i);
             //递归调用
-            backtrack(length, ans, list, index + 1);
+            backtrack(index + 1, length, ans, list);
             //回溯，交换为之前的样子
             Collections.swap(list, index, i);
         }

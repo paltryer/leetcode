@@ -1,7 +1,6 @@
 package com.leetcode.coder.study;
 
 import com.leetcode.coder.util.TreeNode;
-import sun.misc.Unsafe;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -34,6 +33,9 @@ public class Day0531 {
 
     /**
      * 递归判断左右节点是否对称
+     * 如果两个节点都为空，则相同
+     * 如果其中一个为空，不同
+     * 两个值得val相同，则递归比较两个子节点
      */
     private boolean isSymmetric(TreeNode left, TreeNode right) {
         //两个都为空，说明是对称的
@@ -121,7 +123,7 @@ public class Day0531 {
      * 求树的最大深度
      * 使用迭代的方式
      */
-    public int maxDepth1(TreeNode root){
+    public int maxDepth1(TreeNode root) {
 
         //借助额外的队列来存储每层的节点
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
@@ -130,17 +132,19 @@ public class Day0531 {
         int ans = 0;
         queue.offer(root);
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             //因为队列中会出现两层的几点都存在的情况，使用size记录下本层循环还剩的节点
-            int size  = queue.size();
-            while (size>0){
+            int size = queue.size();
+
+            //内层循环，是循环每一层的节点
+            while (size > 0) {
                 //将上层节点的子节点放入队列中
                 TreeNode node = queue.poll();
-                if(node.left != null){
+                if (node.left != null) {
                     queue.offer(node.left);
                 }
 
-                if(node.right != null){
+                if (node.right != null) {
                     queue.offer(node.right);
                 }
                 //将size减到0时，那么队列中全是树的下一层节点
@@ -151,27 +155,8 @@ public class Day0531 {
             ans++;
         }
 
-
         return ans;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

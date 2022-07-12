@@ -11,8 +11,6 @@ import com.leetcode.coder.util.ListNode;
 public class Day0510 {
 
 
-
-
     public static void main(String[] args) {
 
         //合并两个有序链表
@@ -51,11 +49,11 @@ public class Day0510 {
 
 
         if (list1.val <= list2.val) {
-            //1小于2，用1的next和2合并
+            //如果1 小，使用1.next 和2合并
             list1.next = merge(list1.next, list2);
             return list1;
         } else {
-            //2小于1，用2的next和1合并
+            //如果2 小，使用2.next 和1合并
             list2.next = merge(list1, list2.next);
             return list2;
         }
@@ -73,6 +71,7 @@ public class Day0510 {
 
         //一直向后移动，直到一个列表被移空为止
         while (list1 != null & list2 != null) {
+            //判断1 2 谁小，谁小就拼接到index的后面
             if (list1.val > list2.val) {
                 index.next = list2;
                 list2 = list2.next;
@@ -80,6 +79,8 @@ public class Day0510 {
                 index.next = list1;
                 list1 = list1.next;
             }
+
+            //指针向后移动
             index = index.next;
         }
 
@@ -103,6 +104,7 @@ public class Day0510 {
      */
     private static int jumpSteps(int target) {
 
+        //步数足够小，可以确认初始值
         if (target == 2 || target == 1 || target == 0) {
             return target;
         }

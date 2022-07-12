@@ -3,8 +3,6 @@ package com.leetcode.coder.study;
 
 import com.leetcode.coder.util.ListNode;
 
-import java.util.List;
-
 public class Day0601 {
 
     public static void main(String[] args) {
@@ -99,21 +97,24 @@ public class Day0601 {
 
     /**
      * 给你一个链表的头节点 head ，判断链表中是否有环。
-     * 使用快慢指针发
+     * 使用快慢指针法
      */
     public static boolean hasCycle(ListNode head) {
         if (head == null) {
             return false;
         }
 
+        //定义快慢指针对象
         ListNode slow = head;
         ListNode fast = head;
 
+        //根据快指针作为循环条件
         while (fast != null && fast.next != null) {
             //指针向后移动
             fast = fast.next.next;
             slow = slow.next;
 
+            //移动后判断对象是否相等 使用 == 判断
             if (fast == slow) {
                 return true;
             }
@@ -124,16 +125,23 @@ public class Day0601 {
 
     //------------------------------【链表是否相交】----------------------------------------
 
+    /**
+     * 判断两个链表是否相交
+     */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
+        //1.两个链表向后移动，将一个链表走完
         ListNode tempNodeA = headA;
         ListNode tempNodeB = headB;
         while (tempNodeA != null && tempNodeB != null) {
             tempNodeA = tempNodeA.next;
             tempNodeB = tempNodeB.next;
         }
+
+        //确认长短链表
         ListNode shortNode = null;
         ListNode longNode = null;
+        //差值链表  --长链表的剩余部分
         ListNode diffNode = null;
         if (tempNodeA == null) {
             shortNode = headA;
@@ -144,11 +152,14 @@ public class Day0601 {
             longNode = headA;
             diffNode = tempNodeA;
         }
-        //将长链表走完差值
+
+        //将长链表走完差值， 长链表从头开始走
         while (diffNode != null) {
             diffNode = diffNode.next;
             longNode = longNode.next;
         }
+
+        //长链表已经走完了差值，此时同时向后移动，如果相同，则为交点
         while (longNode != null && shortNode != null) {
             if (longNode == shortNode) {
                 return shortNode;

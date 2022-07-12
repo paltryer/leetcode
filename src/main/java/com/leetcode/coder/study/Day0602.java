@@ -56,11 +56,17 @@ public class Day0602 {
             return head;
         }
 
-        ListNode current = head;
+
         ListNode pre = null;
+
+        ListNode current = head;
+
         while (current != null) {
+            //反转
             ListNode next = current.next;
             current.next = pre;
+
+            //向后移动
             pre = current;
             current = next;
         }
@@ -113,6 +119,10 @@ public class Day0602 {
 
     /**
      * 判断该链表是否是回文链表
+     * <p>
+     * 使用快慢指针，将慢指针走到一半位置
+     * 将后半部分反转
+     * 进行一步步比对
      */
     public static boolean isPalindrome(ListNode head) {
 
