@@ -97,6 +97,7 @@ public class Day0526 {
 
     /**
      * 【中序】遍历
+     * 递归方式
      */
     private static void inOrder(TreeNode root, List<Integer> nodeList) {
         if (root == null) {
