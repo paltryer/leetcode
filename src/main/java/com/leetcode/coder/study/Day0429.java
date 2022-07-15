@@ -19,25 +19,7 @@ public class Day0429 {
         ListNode node3 = new ListNode(3);
         node2.next = node3;
 
-//        ListNode listNode = reverseList(node1);
-//        System.out.println(listNode);
 
-//        ListNode listNode1 = reverseList1(node1);
-//        System.out.println(listNode1);
-
-
-//        ListNode listNode = reverseList2(node1);
-//        System.out.println(listNode);
-
-
-//----------------------------------------------------------【排序】---------------------------------------------------------------------------------------------------------------------
-        int[] arr = new int[]{3, 42, 5, 1, 567};
-//        int[] sort = sort(arr);
-//        System.out.println(Arrays.asList(sort));
-
-//----------------------------------------------------------【排序】---------------------------------------------------------------------------------------------------------------------
-        int[] ints = twoSum1(arr, 6);
-        System.out.println(ints);
 
     }
 

@@ -159,9 +159,10 @@ public class Day0712 {
         if (root == null || root == node1 || root == node2) {
             return root;
         }
-        //会返回5
+
+        //如果是父节点，会返回非空
         TreeNode left = getLowestAncestor(root.left, node1, node2);
-        //会返回1
+        //如果是其中一个父节点，会返回非空
         TreeNode right = getLowestAncestor(root.right, node1, node2);
 
         //左右节点都是目标节点的父节点

@@ -186,6 +186,7 @@ public class Day0602 {
                 //如果发生交换，slow++
                 slow++;
             }
+
             //无论怎样，fast++
             fast++;
         }
