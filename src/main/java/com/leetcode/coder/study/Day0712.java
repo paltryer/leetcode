@@ -18,7 +18,7 @@ public class Day0712 {
     /**
      * 最早使用的放在前面
      */
-    class LRUCache {
+    public class LRUCache {
         //容量
         int capacity;
 
